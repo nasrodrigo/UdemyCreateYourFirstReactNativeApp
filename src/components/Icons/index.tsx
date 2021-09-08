@@ -1,7 +1,6 @@
 import React from "react";
-import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useLinkProps } from "@react-navigation/native";
+import { isIOS } from "../../utility";
 
 interface Prop {
   style?: {};
@@ -9,10 +8,6 @@ interface Prop {
   color?: string;
   name?: any;
 }
-
-const isIOS = () => {
-  return Platform.OS === "ios";
-};
 
 const Icon = (prop: Prop) => {
   return (
@@ -45,4 +40,25 @@ export const Chatbox = (prop: Prop) => {
 
 export const Home = (prop: Prop) => {
   return <Icon {...prop} name={isIOS() ? "ios-home" : "md-home"} />;
+};
+
+export const People = (prop: Prop) => {
+  return (
+    <Ionicons {...prop} name={isIOS() ? "ios-people" : "md-people-outline"} />
+  );
+};
+
+export const Person = (prop: Prop) => {
+  return (
+    <Ionicons {...prop} name={isIOS() ? "ios-person" : "md-person-outline"} />
+  );
+};
+
+export const Add = (prop: Prop) => {
+  return (
+    <Ionicons
+      {...prop}
+      name={isIOS() ? "ios-add-circle" : "md-add-circle-outline"}
+    />
+  );
 };

@@ -1,3 +1,9 @@
+import { Platform } from "react-native";
+
+export const isIOS = () => {
+  return Platform.OS === "ios";
+};
+
 const FirstLetterUppercase = (value: string) => {
   return `${value[0].toUpperCase()}${value.slice(1).toLowerCase()}`;
 };

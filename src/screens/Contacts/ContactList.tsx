@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 import ListItemComponent from "../../components/ListItemConponent";
 import { capitalize } from "../../utility";
 
-const Contacts = ({ navigation: navigation }: any) => {
+const ContactList = ({ navigation: navigation }: any) => {
   return (
     <>
       <FlatList
@@ -26,4 +26,4 @@ const Contacts = ({ navigation: navigation }: any) => {
   );
 };
 
-export default Contacts;
+export default ContactList;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, View, Text, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import Header from "../../components/Layout/ContactDetailHeader";
 import Actions from "../../components/Layout/ContactDetailActions";
 import DetailRow from "../../components/Layout/ContactDetailRow";
