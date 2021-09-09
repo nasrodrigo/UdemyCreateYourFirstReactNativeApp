@@ -7,6 +7,7 @@ interface Prop {
   size?: number;
   color?: string;
   name?: any;
+  onPress?: () => {};
 }
 
 const Icon = (prop: Prop) => {
@@ -61,4 +62,8 @@ export const Add = (prop: Prop) => {
       name={isIOS() ? "ios-add-circle" : "md-add-circle-outline"}
     />
   );
+};
+
+export const Menu = (prop: Prop) => {
+  return <Ionicons {...prop} name={isIOS() ? "ios-menu" : "md-menu"} />;
 };
