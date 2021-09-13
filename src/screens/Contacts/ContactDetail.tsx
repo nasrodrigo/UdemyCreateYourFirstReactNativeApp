@@ -1,12 +1,14 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { Button, ScrollView } from "react-native";
 import Header from "../../components/Layout/ContactDetailHeader";
 import Actions from "../../components/Layout/ContactDetailActions";
 import DetailRow from "../../components/Layout/ContactDetailRow";
 import { formatToPhoneNumber, formatToDate } from "../../utility/index";
+import { capitalize } from "../../utility";
 
 interface Props {
   route: any;
+  profile?: boolean;
 }
 
 const ContactDetail = (props: Props) => {
@@ -15,7 +17,10 @@ const ContactDetail = (props: Props) => {
       <ScrollView>
         <Header
           image={props.route.params.contact.picture.large}
-          name={props.route.params.name}
+          name={capitalize(
+            `${props.route.params.contact.name.first} ${props.route.params.contact.name.last}`
+          )}
+          profile={props.profile}
         />
         <Actions
           label="email"

@@ -1,11 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
+import ContactDetail from "../Contacts/ContactDetail";
+import { me } from "../../config/data";
+import { capitalize } from "../../utility";
 
 const User = () => {
   return (
-    <View>
-      <Text>"Me"</Text>
-    </View>
+    <ContactDetail
+      route={{
+        params: {
+          contact: me,
+        },
+      }}
+      profile={true}
+    />
   );
 };
 

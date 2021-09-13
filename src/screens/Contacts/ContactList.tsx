@@ -12,12 +12,7 @@ const ContactList = ({ navigation: navigation }: any) => {
         renderItem={({ item }: any) => (
           <ListItemComponent
             item={item}
-            action={() =>
-              navigation.navigate("Detail", {
-                contact: item,
-                name: capitalize(`${item.name.first} ${item.name.last}`),
-              })
-            }
+            action={() => navigation.navigate("Detail", { contact: item })}
           />
         )}
         keyExtractor={(item) => item.email}
