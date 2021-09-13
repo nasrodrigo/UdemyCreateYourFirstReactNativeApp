@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,7 +11,7 @@ import ContactNew from "../../screens/Contacts/ContactNew";
 import User from "../../screens/User";
 import Color from "../../utility/Color";
 import { isIOS } from "../../utility";
-import { People, Person, Add, Menu } from "../Icons";
+import { Contact, Person, Add, Menu } from "../Icons";
 
 const Stack = createNativeStackNavigator();
 const Tab = isIOS()
@@ -24,11 +25,13 @@ const iconColor = Color.steelBlue;
 const StackHeader = ({ navigation: navigation }: any) => {
   if (isIOS()) return null;
   return (
-    <Menu
-      color={iconColor}
-      size={iconSize}
-      onPress={() => navigation.openDrawer()}
-    />
+    <TouchableOpacity>
+      <Menu
+        color={iconColor}
+        size={iconSize}
+        onPress={() => navigation.openDrawer()}
+      />
+    </TouchableOpacity>
   );
 };
 
@@ -36,9 +39,10 @@ const ContactStacks = ({ navigation: navigation }: any) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Contacts"
+        name="ContactsStack"
         component={ContactList}
         options={{
+          title: "Contacts",
           headerLeft: () => <StackHeader navigation={navigation} />,
           headerTintColor: Color.steelBlue,
         }}
@@ -59,9 +63,10 @@ const AddContactStacks = ({ navigation: navigation }: any) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Add Contact"
+        name="AddContactStack"
         component={ContactNew}
         options={{
+          title: "Add Contact",
           headerLeft: () => <StackHeader navigation={navigation} />,
           headerTintColor: Color.steelBlue,
         }}
@@ -74,9 +79,10 @@ const MeStacks = ({ navigation: navigation }: any) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Me"
+        name="MeStack"
         component={User}
         options={{
+          title: "Me",
           headerLeft: () => <StackHeader navigation={navigation} />,
           headerTintColor: Color.steelBlue,
         }}
@@ -93,13 +99,16 @@ const Tabs = () => {
         name="Contacts"
         component={ContactStacks}
         options={{
-          tabBarIcon: () => <People color={iconTabColor} size={iconSize} />,
+          headerShown: false,
+          tabBarIcon: () => <Contact color={iconTabColor} size={iconSize} />,
         }}
       />
       <Tab.Screen
-        name="Add Contact"
+        name="AddContact"
         component={AddContactStacks}
         options={{
+          title: "Add Contact",
+          headerShown: false,
           tabBarIcon: () => <Add color={iconTabColor} size={iconSize} />,
         }}
       />
@@ -107,6 +116,7 @@ const Tabs = () => {
         name="Me"
         component={MeStacks}
         options={{
+          headerShown: false,
           tabBarIcon: () => <Person color={iconTabColor} size={iconSize} />,
         }}
       />
@@ -115,11 +125,39 @@ const Tabs = () => {
 };
 
 const Drawers = ({ navigation: navigation }: any) => {
+  const iconDrawerColor = Color.steelBlue;
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Contacts" component={ContactStacks} />
-      <Drawer.Screen name="Add Contact" component={AddContactStacks} />
-      <Drawer.Screen name="Me" component={MeStacks} />
+    <Drawer.Navigator
+      drawerContentOptions={{
+        activeTintColor: Color.lightSteelBlue,
+        activeBackgroundColor: Color.aliceBlue,
+        inactiveTintColor: Color.steelBlue,
+        labelStyle: {
+          fontSize: 18,
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="Contacts"
+        component={ContactStacks}
+        options={{
+          drawerIcon: () => <Contact color={iconDrawerColor} size={iconSize} />,
+        }}
+      />
+      <Drawer.Screen
+        name="Add Contact"
+        component={AddContactStacks}
+        options={{
+          drawerIcon: () => <Add color={iconDrawerColor} size={iconSize} />,
+        }}
+      />
+      <Drawer.Screen
+        name="Me"
+        component={MeStacks}
+        options={{
+          drawerIcon: () => <Person color={iconDrawerColor} size={iconSize} />,
+        }}
+      />
     </Drawer.Navigator>
   );
 };

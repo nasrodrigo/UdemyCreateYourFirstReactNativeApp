@@ -1,10 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  Button,
+  Dimensions,
+} from "react-native";
 import Color from "../../utility/Color";
 
 interface Prop {
   image: string;
   name: string;
+  profile?: boolean;
+  action?: () => {};
 }
 
 const window = Dimensions.get("window");
@@ -23,6 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: window.width / 4,
   },
   name: { color: Color.steelBlue, fontSize: 22, marginTop: 10 },
+  button: { marginVertical: 10 },
 });
 
 const ContactDetailHeader = (prop: Prop) => {
@@ -30,6 +40,19 @@ const ContactDetailHeader = (prop: Prop) => {
     <View style={styles.header}>
       <Image style={styles.image} source={{ uri: prop.image }} />
       <Text style={styles.name}>{prop.name}</Text>
+      <View style={styles.button}>
+        <Button
+          color={Color.steelBlue}
+          title={
+            prop.profile && prop.profile === true
+              ? "Edit Profile"
+              : "Edit Contact"
+          }
+          onPress={() => {
+            prop.action;
+          }}
+        />
+      </View>
     </View>
   );
 };

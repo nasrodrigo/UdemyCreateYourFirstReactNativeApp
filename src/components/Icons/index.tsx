@@ -1,5 +1,6 @@
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { isIOS } from "../../utility";
 
 interface Prop {
@@ -11,6 +12,14 @@ interface Prop {
 }
 
 const Icon = (prop: Prop) => {
+  if (!isIOS()) {
+    <MaterialIcons
+      style={{ ...prop.style }}
+      name={prop.name ? prop.name : "error"}
+      size={prop.size ? prop.size : 40}
+      color={prop.color ? prop.color : "#CCC"}
+    />;
+  }
   return (
     <Ionicons
       style={{ ...prop.style }}
@@ -23,47 +32,50 @@ const Icon = (prop: Prop) => {
 
 export const ArrowForward = (prop: Prop) => {
   return (
-    <Icon {...prop} name={isIOS() ? "ios-arrow-forward" : "md-arrow-forward"} />
-  );
-};
-
-export const Mail = (prop: Prop) => {
-  return <Icon {...prop} name={isIOS() ? "ios-mail" : "md-mail"} />;
-};
-
-export const Call = (prop: Prop) => {
-  return <Icon {...prop} name={isIOS() ? "ios-call" : "md-call"} />;
-};
-
-export const Chatbox = (prop: Prop) => {
-  return <Icon {...prop} name={isIOS() ? "ios-chatbox" : "md-chatbox"} />;
-};
-
-export const Home = (prop: Prop) => {
-  return <Icon {...prop} name={isIOS() ? "ios-home" : "md-home"} />;
-};
-
-export const People = (prop: Prop) => {
-  return (
-    <Ionicons {...prop} name={isIOS() ? "ios-people" : "md-people-outline"} />
-  );
-};
-
-export const Person = (prop: Prop) => {
-  return (
-    <Ionicons {...prop} name={isIOS() ? "ios-person" : "md-person-outline"} />
-  );
-};
-
-export const Add = (prop: Prop) => {
-  return (
-    <Ionicons
+    <Icon
       {...prop}
-      name={isIOS() ? "ios-add-circle" : "md-add-circle-outline"}
+      name={isIOS() ? "chevron-forward-outline" : "arrow-forward"}
     />
   );
 };
 
+export const Mail = (prop: Prop) => {
+  return <Icon {...prop} name={isIOS() ? "mail-outline" : "mail"} />;
+};
+
+export const Call = (prop: Prop) => {
+  return <Icon {...prop} name={isIOS() ? "call-outline" : "call"} />;
+};
+
+export const Chatbox = (prop: Prop) => {
+  return (
+    <Icon
+      {...prop}
+      name={isIOS() ? "chatbox-ellipses-outline" : "chatbox-ellipses"}
+    />
+  );
+};
+
+export const Home = (prop: Prop) => {
+  return <Icon {...prop} name={isIOS() ? "home-outline" : "home-sharp"} />;
+};
+
+export const Contact = (prop: Prop) => {
+  return (
+    <Ionicons {...prop} name={isIOS() ? "person-circle-outline" : "people"} />
+  );
+};
+
+export const Person = (prop: Prop) => {
+  return <Ionicons {...prop} name={isIOS() ? "person-outline" : "person"} />;
+};
+
+export const Add = (prop: Prop) => {
+  return (
+    <Ionicons {...prop} name={isIOS() ? "add-circle-outline" : "add-circle"} />
+  );
+};
+
 export const Menu = (prop: Prop) => {
-  return <Ionicons {...prop} name={isIOS() ? "ios-menu" : "md-menu"} />;
+  return <Ionicons {...prop} name={isIOS() ? "ios-menu" : "menu"} />;
 };
